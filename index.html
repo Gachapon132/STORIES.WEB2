@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>THE STORIES | Whimsical Dreamscape</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+    <header class="main-header">
+        <!-- background video showing only butterfly -->
+        <div class="background-video">
+            <iframe class="bg-video-iframe"
+                    src="https://www.youtube.com/embed/Yilv0p8GX6M?autoplay=1&mute=1&controls=0&loop=1&playlist=Yilv0p8GX6M&modestbranding=1&showinfo=0&playsinline=1"
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+            </iframe>
+        </div>
+        <div class="logo-container">
+            <img src="https://img.freepik.com/premium-photo/grand-story-telling-logo-circular-vector-style_998757-53.jpg" alt="The Stories Logo" class="site-logo">
+            <h1 class="main-title">THE STORIES</h1>
+            <p class="site-info">
+                Welcome to the <strong>Whimsical Dreamscape</strong>, a digital sanctuary for lost tales. 
+                Our mission is to preserve the magic of imagination through short, bite-sized legends. 
+                Explore the grid below to find your next adventure.
+            </p>
+        </div>
+        
+        <div class="search-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="story-search" placeholder="Search for a magical tale..." autocomplete="off">
+        </div>
+    </header>
+
+    <!-- Horizontal carousel of featured stories (swipeable) -->
+    <div id="carousel-container" aria-label="Story carousel"></div>
+
+    <main id="grid-container"></main>
+
+    <!-- video story carousel inserted after grid -->
+    <section id="video-section">
+        <h2 class="section-title">Video Stories for Kids</h2>
+        <div id="video-carousel" aria-label="Kids video carousel"></div>
+    </section>
+
+    <div id="story-overlay">
+        <button class="close-btn">&times;</button>
+        <button class="audio-btn" aria-label="Read story aloud">🔊</button>
+        <!-- voice gender selector (boy/girl) to give user a choice of voice tone -->
+        <div id="voice-controls" class="voice-controls">
+            <label><input type="radio" name="voice-gender" value="female" checked> Girl</label>
+            <label><input type="radio" name="voice-gender" value="male"> Boy</label>
+        </div>
+        <div class="story-header">
+            <img src="" alt="Cover Image" id="overlay-img" />
+            <h1 class="story-title"></h1>
+        </div>
+        <div class="story-content"></div>
+    </div>
+
+    <audio id="page-turn-sound" src="data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU2LjU2LjEwMAAAAAAAAAAAAAAA//tAxAAAAAAA////8AAABhY2wgTEFNRTMuMjAwMzYgICAgICAgICAgICAgICAgICAgICAgAAAAAAAAAAAAAAA//vQxAADUAAABJTkZPAQABAAgASwBMAEYAUABPAFkAUwAAAEF1dGhvci0gICAgICAgICAgICAg///8AAAAA" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,303 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: #0a0a12;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* --- HEADER --- */
+.main-header {
+    position: relative; /* allow absolute video child */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    background: radial-gradient(circle at center, #1a1a2e 0%, #0a0a12 100%);
+    text-align: center;
+    overflow: hidden; /* crop video to header area */
+}
+
+/* Video background cropping: expand to full header width */
+.background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none; /* clicks go through */
+}
+
+.bg-video-iframe {
+    position: absolute;
+    /* center on butterfly area by adjusting offsets and scale */
+    top: -120px;
+    left: -200px;
+    width: 1600px; /* much larger to allow repositioning */
+    height: 900px;
+}
+
+.logo-container {
+    position: relative;
+    z-index: 2; /* keep logo/text above video */
+}
+
+.site-logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #f39c12;
+    object-fit: cover;
+}
+
+.main-title {
+    font-family: 'Cherry Bomb One', cursive;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    background: linear-gradient(to bottom, #ffeb3b, #f39c12);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: 10px;
+}
+
+.site-info {
+    max-width: 600px;
+    margin: 15px auto 0;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+/* --- SEARCH --- */
+.search-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 25px;
+}
+
+#story-search {
+    width: 100%;
+    padding: 12px 20px 12px 45px;
+    border-radius: 30px;
+    border: 1px solid rgba(243, 156, 18, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    outline: none;
+}
+
+.search-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); }
+
+/* --- RESPONSIVE GRID (SMALL IMAGES) --- */
+#grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px; 
+    padding: 20px; 
+    max-width: 1200px; 
+    margin: 0 auto;
+}
+
+/* --- HORIZONTAL CAROUSEL --- */
+#carousel-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto 30px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+    background: rgba(255,255,255,0.03);
+    border-radius: 12px;
+}
+
+/* --- VIDEO SECTION --- */
+#video-section {
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    padding: 0 20px;
+    text-align: center;
+}
+#video-section .section-title {
+    font-family: 'Cherry Bomb One', cursive;
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+    color: #f39c12;
+    margin-bottom: 15px;
+}
+#video-carousel {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding: 10px 0;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+#video-carousel .video-card {
+    min-width: 240px;
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+    background: #111;
+    border-radius: 8px;
+    overflow: hidden;
+}
+#video-carousel .video-card iframe {
+    width: 100%;
+    height: 135px; /* 16:9 aspect ratio */
+    display: block;
+}
+#video-carousel .video-card {
+    animation: floatUp 6s ease-in-out infinite;
+}
+#video-carousel .video-card:nth-child(even) {
+    animation-delay: 3s;
+}
+
+/* thumbnail wrapper */
+.video-thumb-wrapper {
+    position: relative;
+}
+.video-thumb {
+    width: 100%;
+    height: 135px;
+    object-fit: cover;
+    display: block;
+}
+.play-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    color: rgba(243,156,18,0.9);
+    pointer-events: none;
+}
+#video-carousel::-webkit-scrollbar {
+    height: 6px;
+}
+#video-carousel::-webkit-scrollbar-thumb {
+    background: rgba(243,156,18,0.6);
+    border-radius: 3px;
+}
+
+#carousel-container .story-card {
+    min-width: 200px;
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+    animation: floatUp 4s ease-in-out infinite;
+}
+
+#carousel-container:empty::before {
+    content: "Swipe to explore stories";
+    color: rgba(255,255,255,0.5);
+    font-size: 1rem;
+    align-self: center;
+    padding-left: 20px;
+}
+#carousel-container .story-card:nth-child(even) {
+    animation-delay: 2s;
+}
+
+@keyframes floatUp {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+
+.story-card {
+    background: #fff; 
+    border-radius: 12px; 
+    overflow: hidden;
+    cursor: pointer; 
+    transition: transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.story-card:hover { transform: scale(1.05); }
+
+/* animation used when a card is clicked to zoom out before overlay */
+@keyframes zoomOut {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0.8); opacity: 0; }
+}
+
+.story-card.zooming {
+    animation: zoomOut 0.45s ease forwards;
+}
+
+.story-card img { 
+    width: 100%; 
+    height: 120px; /* Small image height */
+    object-fit: cover; 
+}
+
+.story-card h2 {
+    font-family: 'Cherry Bomb One', serif; 
+    font-size: 0.95rem;
+    padding: 10px; 
+    text-align: center; 
+    color: #1a1a2e;
+}
+
+/* --- OVERLAY --- */
+#story-overlay {
+    position: fixed; inset: 0; background: #fff; display: none; 
+    flex-direction: column; z-index: 1000; overflow-y: auto; color: #222;
+}
+
+#story-overlay.active { display: flex; }
+
+.story-header { height: 35vh; position: relative; }
+.story-header img { width: 100%; height: 100%; object-fit: cover; }
+.story-header h1 {
+    position: absolute; bottom: 20px; left: 20px; color: white;
+    font-family: 'Cherry Bomb One', serif; font-size: 2rem;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+}
+
+.story-content { padding: 30px; font-size: 1.1rem; line-height: 1.6; max-width: 700px; margin: 0 auto; }
+
+.close-btn {
+    position: fixed; top: 15px; right: 15px; width: 40px; height: 40px;
+    border-radius: 50%; border: none; background: #f39c12; color: white;
+    font-size: 1.5rem; cursor: pointer; z-index: 1100;
+}
+
+.audio-btn {
+    position: fixed; top: 15px; right: 65px; width: 40px; height: 40px;
+    border-radius: 50%; border: none; background: #3498db; color: white;
+    font-size: 1.2rem; cursor: pointer; z-index: 1100;
+}
+
+.audio-btn.playing { background: #2ecc71; }
+
+/* little controls for picking male/female voice */
+.voice-controls {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 0.9rem;
+}
+.voice-controls label {
+    margin-right: 8px;
+    cursor: pointer;
+}
+.voice-controls input {
+    margin-right: 3px;
+}
+
+/* --- MOBILE "SQUEEZE" --- */
+@media (max-width: 500px) {
+    #grid-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on small screens */
+        gap: 10px;
+    }
+    .story-card img { height: 100px; }
+    #carousel-container { padding: 10px; }
+}
